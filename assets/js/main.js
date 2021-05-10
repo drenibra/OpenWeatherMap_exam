@@ -32,7 +32,7 @@ function getTime(place) {
 
 
 function getCity(city) {
-    var url = `http://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}`;
+    var url = `http://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${apiKey}`;
     axios.get(`${url}`)
     .then((response) => {
         renderWeather(response.data);
@@ -44,30 +44,31 @@ function getCity(city) {
 
 function renderWeather(city) {
     let output = '';
-    temperature = parseInt(city.main.temp - 273.15);
+    temperature = parseInt(city.main.temp);
     let wind = parseInt(city.wind.speed * 3.6);
+    let iconLink = `http://openweathermap.org/img/wn/${city.weather[0].icon}@4x.png`
     console.log(city);
     output += `
         <div class="jumbotron">
             <div id="weather" class="row">
-                <div class="col-lg-6 col-sm-6 col-12 d-flex align-items-center">
+                <div class="col-lg-6 col-md-6 col-sm-12 col-12 d-flex align-items-center">
                     <div class="d-flex align-items-center">
-                        <img src="https://ssl.gstatic.com/onebox/weather/64/sunny_s_cloudy.png" alt="sunny_s_cloudy">
+                        <img src="${iconLink}" alt="sunny_s_cloudy" style="width: 100px;">
                         <h1 class="pl-3" id="temperatureValue">{{degrees}}</h1>
                     </div>
                     <div class="d-flex align-items-center position-relative pl-1" style="top:-10px">
                         <span id="temp" v-if="(unit == 'F')" class="pr-2" v-on:click="changeUnit" >°F</span>
                         <span id="temp" v-if="(unit == 'C')" class="pr-2" v-on:click="changeUnit" >°C</span>
                     </div>
-                    <div class="pl-5">
+                    <div class="pl-2">
                         <span>Humidity: ${city.main.humidity}%</span><br>
                         <span>Wind: ${wind}km/h</span>
                     </div>
                 </div>
-                <div class="col-lg-6 col-sm-6 col-12 text-right">
-                <h2>${city.name}</h2>
-                <span>${newDate}, ${time}</span><br>
-                <span>${capitalize(city.weather[0].description)}</span>
+                <div class="col-lg-6 col-md-6 col-12 text-right">
+                    <h2>${city.name}</h2>
+                    <span>${newDate}, ${time}</span><br>
+                    <span>${capitalize(city.weather[0].description)}</span>
                 </div>
             </div>
         </div>
