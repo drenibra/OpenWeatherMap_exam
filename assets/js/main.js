@@ -106,28 +106,3 @@ const capitalize = (s) => {
     if (typeof s !== 'string') return ''
     return s.charAt(0).toUpperCase() + s.slice(1)
 }
-
-/* $('.tempUnit').click(function() {
-    $('.tempUnit').removeClass('active');
-    $(this).addClass('active');
-}); */
-
-/* $('#fahrenheit').click(function() {
-    //(0°C × 9/5) + 32 = 32°F
-    if (!$(this).hasClass('active')) {
-        $(this).removeClass('active')
-        let celsius = $('#temperatureValue').text();
-        let fahrenheit = (celsius * 9 / 5) + 32;
-        $('#temperatureValue').html(fahrenheit);
-    }
-})
-
-$('#celsius').click(function() {
-    //(32°F − 32) × 5/9 = 0°C
-    if (!$(this).hasClass('active')) {
-        $(this).removeClass('active')
-        let fahrenheit = $('#temperatureValue').text();
-        let celsius = (fahrenheit - 32) * 5 / 9;
-        $('#temperatureValue').html(celsius);
-    }
-}) */
