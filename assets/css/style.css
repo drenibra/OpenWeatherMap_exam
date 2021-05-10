@@ -3,3 +3,18 @@
         text-align: center !important;
     }
 }
+
+#celsius:hover, #fahrenheit:hover {
+    cursor: pointer;
+}
+
+#celsius, #fahrenheit {
+    color: rgb(187, 187, 187);
+}
+.inactive {
+    color: rgb(187, 187, 187);
+}
+
+.active {
+    color: black !important;
+}
