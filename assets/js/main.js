@@ -46,28 +46,7 @@ function renderWeather(city) {
     let output = '';
     temperature = parseInt(city.main.temp - 273.15);
     let wind = parseInt(city.wind.speed * 3.6);
-    
-/*     output += `
-        <div class="jumbotron">
-            <div id="weather" class="row">
-                <div class="col-lg-5 d-flex align-items-center">
-                    <div class="d-flex align-items-center">
-                        <img src="https://ssl.gstatic.com/onebox/weather/64/sunny_s_cloudy.png" alt="sunny_s_cloudy">
-                        <h1 class="pl-3" id="temperatureValue">{{temperature}}<span>°</span></h1>
-                    </div>
-                    <div class="pl-5">
-                        <span>Humidity: ${city.main.humidity}%</span><br>
-                        <span>Wind: ${wind}km/h</span>
-                    </div>
-                </div>
-                <div class="col-lg-5 text-right">
-                    <h2>${city.name}</h2>
-                    <span>${newDate}, ${time}</span><br>
-                    <span>${capitalize(city.weather[0].description)}</span>
-                </div>
-            </div>
-        </div>
-    `; */
+    console.log(city);
     output += `
         <div class="jumbotron">
             <div id="weather" class="row">
@@ -77,8 +56,8 @@ function renderWeather(city) {
                         <h1 class="pl-3" id="temperatureValue">{{degrees}}</h1>
                     </div>
                     <div class="d-flex align-items-center position-relative pl-1" style="top:-10px">
-                        <span id="celsius" class="pr-2" v-on:click="changeUnit" >°C</span>
-                        <span id="fahrenheit" style="border-left:1px solid rgb(179, 179, 179)" v-on:click="changeUnit" class="pl-1">°F</span>
+                        <span id="temp" v-if="(unit == 'F')" class="pr-2" v-on:click="changeUnit" >°F</span>
+                        <span id="temp" v-if="(unit == 'C')" class="pr-2" v-on:click="changeUnit" >°C</span>
                     </div>
                     <div class="pl-5">
                         <span>Humidity: ${city.main.humidity}%</span><br>
