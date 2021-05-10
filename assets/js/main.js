@@ -1,6 +1,6 @@
 $(document).ready(() => {
     $('#searchForm').on('submit', (e) => {
-        let cityName = $('#cityName').val();
+        var cityName = $('#cityName').val();
         getTime(cityName);
         e.preventDefault();
     });    
@@ -11,6 +11,7 @@ let time = '';
 let date = '';
 let newDate = '';
 let temperature = '';
+let output = '';
 
 function getTime(place) {
     const timeZoneApi = 'a55bf11d071c4c32b5dfd559020b2b0d';
@@ -22,7 +23,6 @@ function getTime(place) {
         newDate = new Date(date);
         newDate = newDate.toString().split(' ');
         newDate = `${newDate[0]} - ${newDate[1]} ${newDate[2]}`
-        console.log(newDate);
         getCity(place);
     })
     .catch((err) => {
@@ -43,12 +43,12 @@ function getCity(city) {
 }
 
 function renderWeather(city) {
-    let output = '';
+    output = '';
     temperature = parseInt(city.main.temp);
     let wind = parseInt(city.wind.speed * 3.6);
     let iconLink = `http://openweathermap.org/img/wn/${city.weather[0].icon}@4x.png`
     console.log(city);
-    output += `
+    output = `
         <div class="jumbotron">
             <div id="weather" class="row">
                 <div class="col-lg-6 col-md-6 col-sm-12 col-12 d-flex align-items-center">
