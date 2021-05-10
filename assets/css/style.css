@@ -1,19 +1,5 @@
-/* @media(min-width: 960px) {
-    #movies .col-md-3 .well {
-        height: 390px;
-    }
-    #movies .col-md-3 img {
-        height: 240px;
-    }
-} */
-
-.card {
-    margin: 12px;
-}
-@media (min-width: 576px) {
-    .row {
-        position: relative;
-        left: 50%;
-        transform: translateX(-40%);
+@media (max-width: 575px) {
+    .text-right {
+        text-align: center !important;
     }
 }
