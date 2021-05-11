@@ -29,15 +29,25 @@
     cursor: pointer;
 }
 
+.display-none {
+    display: none !important;
+}
+
 .owl-navigation {
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     height: auto;
     position: relative;
-    top: -100px;
+    top: -105px;
     z-index: 1;
 }
 
 .owl-navigation img {
     padding: 0 20px;
+    width: 80px;
+    height: auto;
+}
+
+.item {
+    padding-bottom: 100px;
 }

@@ -13,6 +13,7 @@ let date = '';
 let newDate = '';
 let temperature = '';
 let output = '';
+let weatherDate = '';
 
 function getTime(place, forecastType) {
     const timeZoneApi = 'a55bf11d071c4c32b5dfd559020b2b0d';
@@ -59,7 +60,6 @@ function renderCurrentWeather(city) {
     temperature = parseInt(city.main.temp);
     let wind = parseInt(city.wind.speed * 3.6);
     let iconLink = `http://openweathermap.org/img/wn/${city.weather[0].icon}@4x.png`
-    console.log(city);
     output = `
         <div class="jumbotron">
             <div id="weather" class="row">
@@ -118,11 +118,10 @@ function renderCurrentWeather(city) {
 }
 
 function renderFiveDayWeather(data) {
-    console.log(data);
     data.list.forEach(function (item) {
         let iconLink = `http://openweathermap.org/img/wn/${item.weather[0].icon}@4x.png`;
         let time = (item.dt_txt.split(':')[0] + ':' + item.dt_txt.split(':')[1]).split(' ')[1];
-        let date = (item.dt_txt.split(':')[0] + ':' + item.dt_txt.split(':')[1]).split(' ')[0];
+        weatherDate = (item.dt_txt.split(':')[0] + ':' + item.dt_txt.split(':')[1]).split(' ')[0];
         output += `
         <div class="jumbotron item">
             <div id="weather" class="row">
@@ -142,13 +141,23 @@ function renderFiveDayWeather(data) {
                 <div class="col-lg-6 col-md-6 col-12 text-right">
                     <h2>${data.city.name}</h2>
                     <h5>${time}</h5>
-                    <span>${getWeatherDate(date)}</span></br>
+                    <span>${getWeatherDate(weatherDate)}</span></br>
                     <span>${capitalize(item.weather[0].description)}</span>
                 </div>
             </div>
         </div>
         `;
         $('#weatherOutputCarousel').html(output);
+
+        function getWeatherDate(weatherDate) {
+            weatherDate = weatherDate.split(' ')[0];
+            let dateYear = weatherDate.split('-')[0]
+            let dateMonth = weatherDate.split('-')[1]
+            let dateDay = weatherDate.split('-')[2]
+            let fullDate = dateMonth + '/' + dateDay + '/' + dateYear;
+            let dt = new Date(fullDate)
+            return dt.toString().split(' ')[0] + ' - ' + dt.toString().split(' ')[1] + ' ' +  dt.toString().split(' ')[2];
+        }
     })
     $('.owl-carousel').owlCarousel({
         loop:true,
@@ -159,25 +168,16 @@ function renderFiveDayWeather(data) {
             }
         }
     });
+    $('.owl-navigation').removeClass('display-none');
     $('.customNextBtn').click(function () {
         $('.owl-carousel').trigger('next.owl.carousel');
-      }); 
-      $('.customPreviousBtn').click(function () {
-        $('.owl-carousel').trigger('prev.owl.carousel', [300]);
-      });
+    }); 
+    $('.customPreviousBtn').click(function () {
+    $('.owl-carousel').trigger('prev.owl.carousel', [300]);
+    });
 }
 
 const capitalize = (s) => {
     if (typeof s !== 'string') return ''
     return s.charAt(0).toUpperCase() + s.slice(1)
-}
-
-function getWeatherDate(thisDate) {
-    thisDate = thisDate.split(' ')[0];
-    let dateYear = date.split('-')[0]
-    let dateMonth = date.split('-')[1]
-    let dateDay = date.split('-')[2]
-    let fullDate = dateMonth + '/' + dateDay + '/' + dateYear;
-    let dt = new Date(fullDate)
-    return dt.toString().split(' ')[0] + ' - ' + dt.toString().split(' ')[1] + ' ' +  dt.toString().split(' ')[2];
 }

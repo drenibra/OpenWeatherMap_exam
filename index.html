@@ -31,8 +31,8 @@
                         <input type="text" class="form-control col-lg-9 col-md-8 col-sm-8 col-12" id="cityName" placeholder="Search city...">
                         <select class="form-control col-lg-3 col-md-4 col-sm-4 col-12" id="forecastType">
                             <option disabled value="none">Select Forecast Type</option>
-                            <option value="current">Current Forecast</option>
                             <option value="fiveDay">Five-Day Forecast</option>
+                            <option value="current">Current Forecast</option>
                         </select>
                     </div>
                     <button id="button" class="btn btn-primary mt-3 col-md-2 col-12">Search</button>
@@ -45,10 +45,19 @@
 
         <div class="container" id="weatherOutput">
         </div> 
-        <!-- <div class="owl-navigation">
-            <img src="assets/images/Left.svg" alt="left" class="customPreviousBtn">
-            <img src="assets/images/Right.svg" alt="right" class="customNextBtn">
-        </div> -->
+        <div class="container">
+            <div class="owl-navigation display-none col-lg-12">
+                <div>
+                    <img src="assets/images/Left.svg" alt="left" class="customPreviousBtn"></br>
+                    <span>Previous 3 hours</span>
+                </div>
+                <div>
+                    <img src="assets/images/Right.svg" alt="right" class="customNextBtn"></br>
+                    <span>Next 3 hours</span>
+                </div>
+            </div>
+        </div>
+            
     </div>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"></script>
