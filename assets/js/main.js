@@ -34,8 +34,8 @@ function getTime(place, forecastType) {
 
 
 function getCity(city, forecastType) {
-    let forecast5Url = `http://api.openweathermap.org/data/2.5/forecast?q=${city}&units=metric&appid=${apiKey}`;
-    var url = `http://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${apiKey}`;
+    let forecast5Url = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&units=metric&appid=${apiKey}`;
+    var url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${apiKey}`;
     if (forecastType === 'current') {
         axios.get(`${url}`)
         .then((response) => {
@@ -59,7 +59,7 @@ function renderCurrentWeather(city) {
     output = '';
     temperature = parseInt(city.main.temp);
     let wind = parseInt(city.wind.speed * 3.6);
-    let iconLink = `http://openweathermap.org/img/wn/${city.weather[0].icon}@4x.png`
+    let iconLink = `https://openweathermap.org/img/wn/${city.weather[0].icon}@4x.png`
     output = `
         <div class="jumbotron">
             <div id="weather" class="row">
@@ -119,7 +119,7 @@ function renderCurrentWeather(city) {
 
 function renderFiveDayWeather(data) {
     data.list.forEach(function (item) {
-        let iconLink = `http://openweathermap.org/img/wn/${item.weather[0].icon}@4x.png`;
+        let iconLink = `https://openweathermap.org/img/wn/${item.weather[0].icon}@4x.png`;
         let time = (item.dt_txt.split(':')[0] + ':' + item.dt_txt.split(':')[1]).split(' ')[1];
         weatherDate = (item.dt_txt.split(':')[0] + ':' + item.dt_txt.split(':')[1]).split(' ')[0];
         output += `

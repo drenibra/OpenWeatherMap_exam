@@ -28,6 +28,9 @@
 #navbar-logo:hover {
     background: url('../images/nightweather_icon.svg');
 }
+#navbar-logo:focus {
+    background: url('../images/nightweather_icon.svg');
+}
 
 .owl-dots {
     display: none;
