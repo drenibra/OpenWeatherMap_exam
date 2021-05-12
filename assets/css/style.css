@@ -12,6 +12,11 @@
     }
 }
 
+.jumbotron {
+    background-color: #ffffff00;
+    margin: 0;
+}
+
 #temp {
     color: rgb(78, 78, 78);
 }
@@ -64,7 +69,7 @@
     justify-content: space-between;
     height: auto;
     position: relative;
-    top: -105px;
+    top: -75px;
     z-index: 1;
 }
 
@@ -85,6 +90,10 @@ main {
     height: 100vh;
 }
 
-#weatherInput {
+#weatherInput, #weatherOutput > .jumbotron, .owl-stage-outer {
     box-shadow: 0 0 30px 3px rgb(0 0 0 / 20%);
+}
+
+.owl-stage-outer, #weatherInput, #weatherOutput {
+    backdrop-filter: blur(10px);
 }

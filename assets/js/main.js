@@ -63,7 +63,7 @@ function renderCurrentWeather(city) {
     output = `
         <div class="jumbotron">
             <div id="weather" class="row">
-                <div class="col-lg-6 col-md-6 col-sm-12 col-12 d-flex align-items-center">
+                <div class="col-lg-6 col-md-6 col-sm-12 col-12 d-flex align-items-center justify-content-center">
                     <div class="d-flex align-items-center">
                         <img src="${iconLink}" alt="sunny_s_cloudy" style="width: 100px;">
                         <h1 class="pl-3" id="temperatureValue">{{degrees}}</h1>
@@ -74,14 +74,14 @@ function renderCurrentWeather(city) {
                     </div>
                     <div class="pl-2">
                         <span>Humidity: ${city.main.humidity}%</span><br>
-                        <span>Wind: ${wind}km/h</span>
+                        <span>Wind: ${wind}km/h</span><br>
+                        <span>${capitalize(city.weather[0].description)}</span>
                     </div>
                 </div>
                 <div class="col-lg-6 col-md-6 col-12 text-right">
                     <h2>${city.name}</h2>
                     <h5>${time}</h5>
                     <span>${newDate}</span></br>
-                    <span>${capitalize(city.weather[0].description)}</span>
                 </div>
             </div>
         </div>
@@ -135,14 +135,14 @@ function renderFiveDayWeather(data) {
                     </div>
                     <div class="pl-2">
                         <span>Humidity: ${item.main.humidity}%</span><br>
-                        <span>Wind: ${item.wind.speed}km/h</span>
+                        <span>Wind: ${item.wind.speed}km/h</span><br>
+                        <span>${capitalize(item.weather[0].description)}</span>
                     </div>
                 </div>
                 <div class="col-lg-6 col-md-6 col-12 text-right">
                     <h2>${data.city.name}</h2>
                     <h5>${time}</h5>
                     <span>${getWeatherDate(weatherDate)}</span></br>
-                    <span>${capitalize(item.weather[0].description)}</span>
                 </div>
             </div>
         </div>
