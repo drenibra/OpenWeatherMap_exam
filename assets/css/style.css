@@ -24,12 +24,23 @@
     cursor: pointer;
 }
 
+main {
+    background: url('https://www.sharepointshepherd.com/wp/wp-content/uploads/2015/10/background-clouds-med.jpg');
+    background-repeat: repeat;
+    background-size: contain;
+    background-position: center;
+    height: 100vh;
+}
+
 @media (max-width: 575px) {
     #searchForm.d-flex {
         flex-direction: column;
     }
     select {
         margin-top: 10px;
+    }
+    main {
+        background-size: 300px;
     }
 }
 
@@ -81,13 +92,6 @@
 
 .item {
     padding-bottom: 100px;
-}
-
-main {
-    background: url('https://www.sharepointshepherd.com/wp/wp-content/uploads/2015/10/background-clouds-med.jpg');
-    background-repeat: repeat;
-    background-position: center;
-    height: 100vh;
 }
 
 #weatherInput, #weatherOutput > .jumbotron, .owl-stage-outer {
