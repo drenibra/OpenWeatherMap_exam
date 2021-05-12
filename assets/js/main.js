@@ -1,4 +1,5 @@
 $(document).ready(() => {
+    $.holdReady(true)
     $('#button').click((e) => {
         var cityName = $('#cityName').val();
         var forecastType = $('#forecastType').val();
@@ -56,8 +57,8 @@ function getCity(city, forecastType) {
 }
 
 function renderCurrentWeather(city) {
-    console.log(city);
-    output = '';
+    stopCarousel();
+    $('.owl-navigation').addClass('display-none');
     temperature = parseInt(city.main.temp);
     let iconLink = `https://openweathermap.org/img/wn/${city.weather[0].icon}@4x.png`
     output = `
@@ -66,11 +67,10 @@ function renderCurrentWeather(city) {
                 <div class="col-lg-6 col-md-6 col-sm-12 col-12 d-flex align-items-center justify-content-center">
                     <div class="d-flex align-items-center">
                         <img src="${iconLink}" alt="sunny_s_cloudy" style="width: 100px;">
-                        <h1 id="temperatureValue">{{degrees}}</h1>
+                        <h1 id="temperatureValue">${temperature}</h1>
                     </div>
                     <div class="d-flex align-items-center position-relative pl-1" style="top:-10px">
-                        <span id="temp" v-if="(unit == 'F')" class="pr-2" v-on:click="changeUnit" >°F</span>
-                        <span id="temp" v-if="(unit == 'C')" class="pr-2" v-on:click="changeUnit" >°C</span>
+                        <span class="pr-2">°C</span>
                     </div>
                     <div class="pl-2">
                         <span>Humidity: ${city.main.humidity}%</span><br>
@@ -88,36 +88,15 @@ function renderCurrentWeather(city) {
     `;
 
     $('#weatherOutput').html(output);
-
-    var vm = new Vue({
-        el: '#app',
-        data: {
-            degrees: temperature,
-            unit: 'C'
-        },
-        methods: {
-            changeUnit: function() {
-                if (this.unit === "C") {
-                    this.unit = "F";
-                } else {
-                    this.unit = "C";
-                }
-                return this.convert();
-            },
-            convert: function () {
-                var f = this.degrees;
-                if (this.unit === "F") {
-                    f = Math.round(f * 9 / 5 + 32);
-                } else {
-                    f = Math.round((f - 32) * 5 / 9);
-                }
-                return this.degrees = f;
-            }
-        }
-    })
 }
 
+let renderFiveCount = 0;
+
 function renderFiveDayWeather(data) {
+    console.log('test');
+    output = '';
+    $('#weatherOutput').html(output);
+    stopCarousel();
     data.list.forEach(function (item) {
         let iconLink = `https://openweathermap.org/img/wn/${item.weather[0].icon}@4x.png`;
         let time = (item.dt_txt.split(':')[0] + ':' + item.dt_txt.split(':')[1]).split(' ')[1];
@@ -159,6 +138,29 @@ function renderFiveDayWeather(data) {
             return dt.toString().split(' ')[0] + ' - ' + dt.toString().split(' ')[1] + ' ' +  dt.toString().split(' ')[2];
         }
     })
+    startCarousel();
+    $('.owl-navigation').removeClass('display-none');
+    $('.customNextBtn').click(function () {
+        $('.owl-carousel').trigger('next.owl.carousel');
+    }); 
+    $('.customPreviousBtn').click(function () {
+    $('.owl-carousel').trigger('prev.owl.carousel', [300]);
+    });
+    renderFiveCount++;
+}
+
+const capitalize = (s) => {
+    if (typeof s !== 'string') return ''
+    return s.charAt(0).toUpperCase() + s.slice(1)
+}
+
+function stopCarousel() {
+    var owl = $('.owl-carousel');
+    owl.trigger('destroy.owl.carousel');
+    owl.addClass('off');
+}
+
+function startCarousel(){
     $('.owl-carousel').owlCarousel({
         loop:true,
         nav:true,
@@ -169,15 +171,36 @@ function renderFiveDayWeather(data) {
         }
     });
     $('.owl-navigation').removeClass('display-none');
-    $('.customNextBtn').click(function () {
-        $('.owl-carousel').trigger('next.owl.carousel');
-    }); 
-    $('.customPreviousBtn').click(function () {
-    $('.owl-carousel').trigger('prev.owl.carousel', [300]);
-    });
 }
 
-const capitalize = (s) => {
-    if (typeof s !== 'string') return ''
-    return s.charAt(0).toUpperCase() + s.slice(1)
-}
+/* function initializeVue() {
+    var vm = new Vue({
+        el: '#app',
+        mounted() {
+            $.holdReady(false)
+        },
+        data: {
+            degrees: temperature,
+            unit: 'C'
+        },
+        methods: {
+            changeUnit: function() {
+                if (this.unit === "C") {
+                    this.unit = "F";
+                } else {
+                    this.unit = "C";
+                }
+                return this.convert();
+            },
+            convert: function () {
+                var f = this.degrees;
+                if (this.unit === "F") {
+                    f = Math.round(f * 9 / 5 + 32);
+                } else {
+                    f = Math.round((f - 32) * 5 / 9);
+                }
+                return this.degrees = f;
+            }
+        }
+    })
+} */
