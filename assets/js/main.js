@@ -34,7 +34,7 @@ function getTime(place, forecastType) {
 
 
 function getCity(city, forecastType) {
-    let forecast5Url = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&units=metric&appid=${apiKey}`;
+    let fiveDaysForecast = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&units=metric&appid=${apiKey}`;
     var url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${apiKey}`;
     if (forecastType === 'current') {
         axios.get(`${url}`)
@@ -45,7 +45,7 @@ function getCity(city, forecastType) {
             console.log((err));
         })
     } else {
-        axios.get(`${forecast5Url}`)
+        axios.get(`${fiveDaysForecast}`)
         .then((response) => {
             renderFiveDayWeather(response.data);
         })
