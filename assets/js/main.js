@@ -204,3 +204,6 @@ function startCarousel(){
         }
     })
 } */
+
+//<span id="temp" v-if="(unit == 'F')" class="pr-2" v-on:click="changeUnit" >°F</span>
+//<span id="temp" v-if="(unit == 'C')" class="pr-2" v-on:click="changeUnit" >°C</span>
