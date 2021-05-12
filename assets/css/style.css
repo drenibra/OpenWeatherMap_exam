@@ -25,7 +25,7 @@
 }
 
 @media (max-width: 575px) {
-    #searchForm .d-flex {
+    #searchForm.d-flex {
         flex-direction: column;
     }
     select {
