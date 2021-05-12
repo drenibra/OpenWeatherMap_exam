@@ -66,7 +66,7 @@ function renderCurrentWeather(city) {
                 <div class="col-lg-6 col-md-6 col-sm-12 col-12 d-flex align-items-center justify-content-center">
                     <div class="d-flex align-items-center">
                         <img src="${iconLink}" alt="sunny_s_cloudy" style="width: 100px;">
-                        <h1 class="pl-3" id="temperatureValue">{{degrees}}</h1>
+                        <h1 id="temperatureValue">{{degrees}}</h1>
                     </div>
                     <div class="d-flex align-items-center position-relative pl-1" style="top:-10px">
                         <span id="temp" v-if="(unit == 'F')" class="pr-2" v-on:click="changeUnit" >°F</span>
