@@ -56,9 +56,9 @@ function getCity(city, forecastType) {
 }
 
 function renderCurrentWeather(city) {
+    console.log(city);
     output = '';
     temperature = parseInt(city.main.temp);
-    let wind = parseInt(city.wind.speed * 3.6);
     let iconLink = `https://openweathermap.org/img/wn/${city.weather[0].icon}@4x.png`
     output = `
         <div class="jumbotron">
@@ -74,7 +74,7 @@ function renderCurrentWeather(city) {
                     </div>
                     <div class="pl-2">
                         <span>Humidity: ${city.main.humidity}%</span><br>
-                        <span>Wind: ${wind}km/h</span><br>
+                        <span>Wind: ${city.wind.speed}km/h</span><br>
                         <span>${capitalize(city.weather[0].description)}</span>
                     </div>
                 </div>
